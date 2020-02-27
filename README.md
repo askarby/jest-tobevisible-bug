@@ -1,27 +1,18 @@
-# JestTobevisibleBug
+# Jest "toBeVisible" Bug
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
+This repository has been configured to use [Jest](https://jestjs.io/) for testing, using the [Jest builder for Angular build facade](https://github.com/just-jeb/angular-builders/tree/master/packages/jest).
 
-## Development server
+# Purpose
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This repository proves that [@ngneat/spectator](https://github.com/ngneat/spectator)'s [custom matcher](https://github.com/ngneat/spectator#custom-matchers) 
+[`toBeVisible`](https://github.com/ngneat/spectator/blob/master/projects/spectator/src/lib/matchers.ts#L406) does not work when used
+in conjunction with [Jest](https://jestjs.io/) (due to a lackluster implementation of `offsetWidth` / `offsetHeight` by [jsdom](https://github.com/jsdom/jsdom)).
 
-## Code scaffolding
+# Execute
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The tests can be executed by running the command `npm test`.
 
-## Build
+# Pre-requisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. Clone this repository (`git clone ...`)
+2. From within the location of the "cloned repository", execute `npm install`

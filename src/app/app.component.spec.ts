@@ -1,31 +1,27 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {createComponentFactory, Spectator} from '@ngneat/spectator/jest';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+  const createComponent = createComponentFactory({
+    component: AppComponent,
+  });
+
+  let spectator: Spectator<AppComponent>;
+
+  beforeEach(() => {
+    spectator = createComponent();
+  });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    expect(spectator.element).toBeTruthy();
   });
 
   it(`should have as title 'jest-tobevisible-bug'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('jest-tobevisible-bug');
+    expect(spectator.component.title).toEqual('jest-tobevisible-bug');
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('jest-tobevisible-bug app is running!');
+    expect('.content span').toContainText('jest-tobevisible-bug app is running!');
+    expect('.content span').toBeVisible();
   });
 });
